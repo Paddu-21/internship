@@ -1,0 +1,291 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adobe-Inspired Navigation Bar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Optional: Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="font-sans antialiased bg-gray-50">
+
+    <nav class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Left side: Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-red-600">Adobe</a>
+                </div>
+
+                <!-- Middle: Navigation Links (Desktop) -->
+                <div class="hidden md:flex md:space-x-4">
+                    <!-- Products Dropdown -->
+                    <div class="relative">
+                        <button id="productsDropdownButton" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600 focus:outline-none flex items-center">
+                  Products
+                  <!-- Down Arrow Icon -->
+                  <svg class="inline ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                        <!-- Dropdown Menu Items -->
+                        <div id="productsDropdownMenu" class="absolute left-0 mt-2 w-48 bg-white border rounded-md shadow-lg hidden z-10">
+                            <div><a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Photoshop</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Image editing and design.</a>
+                            </div>
+                            <div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Illustrator</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Vector graphics and illustration.</a>
+                            </div>
+                            <div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Premiere Pro</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Professional video editing software.</a>
+                            </div>
+                            <div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">After Effects</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Motion graphics and animation.</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solutions Dropdown -->
+                    <div class="relative">
+                        <button id="solutionsDropdownButton" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600 focus:outline-none flex items-center">
+                  Solutions
+                  <!-- Down Arrow Icon -->
+                  <svg class="inline ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                        <!-- Dropdown Menu Items -->
+                        <div id="solutionsDropdownMenu" class="absolute left-0 mt-2 w-48 bg-white border rounded-md shadow-lg hidden z-10">
+                            <div> <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Creative Cloud</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Adobe's design software suite</a>
+                            </div>
+                            <div> <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Document Cloud</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">PDF management and e-signatures.</a></div>
+                            <div> <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Experience Cloud</a>
+                                <a href="#" class="block px-2 py-2 text-sm text-gray-400 hover:bg-gray-100">Marketing and analytics platform.</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Simple Links -->
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600">Learn</a>
+                    <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600">Support</a>
+                </div>
+
+                <!-- Right side: Search and User Profile -->
+                <div class="flex items-center space-x-4">
+                    <!-- Search Bar (Desktop) -->
+                    <div class="hidden md:block">
+                        <input type="text" placeholder="Search..." class="px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="hidden md:block">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-red-600">
+                  Sign In
+                </a>
+                    </div>
+
+
+                    </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <script>
+            const productsDropdownButton = document.getElementById('productsDropdownButton');
+            const productsDropdownMenu = document.getElementById('productsDropdownMenu');
+
+            const solutionsDropdownButton = document.getElementById('solutionsDropdownButton');
+            const solutionsDropdownMenu = document.getElementById('solutionsDropdownMenu');
+
+            // Function to close all dropdowns
+            function closeAllDropdowns() {
+                productsDropdownMenu.classList.add('hidden');
+                solutionsDropdownMenu.classList.add('hidden');
+            }
+
+            // Toggle Products Dropdown
+            productsDropdownButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event from bubbling up to window
+                const isHidden = productsDropdownMenu.classList.toggle('hidden');
+                if (!isHidden) {
+                    solutionsDropdownMenu.classList.add('hidden'); // Close other dropdown
+                }
+            });
+
+            // Toggle Solutions Dropdown
+            solutionsDropdownButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event from bubbling up to window
+                const isHidden = solutionsDropdownMenu.classList.toggle('hidden');
+                if (!isHidden) {
+                    productsDropdownMenu.classList.add('hidden'); // Close other dropdown
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            window.addEventListener('click', () => {
+                closeAllDropdowns();
+                mobileMenu.classList.add('hidden');
+            });
+
+            // Prevent closing when clicking inside dropdown menus
+            productsDropdownMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            solutionsDropdownMenu.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        </script>
+
+        <!-- Hero Section -->
+        <section class="bg-gray-800 text-white">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h1 class="text-5xl font-bold mb-6">Creativity for All</h1>
+                <p class="text-xl mb-6">Everything you need to create your best work, right at your fingertips.</p>
+                <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get Started</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="container mx-auto px-6 py-16 mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10" >
+                <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                    <h2 class="text-2xl font-bold mb-3">Powerful Tools</h2>
+                    <p class="text-gray-700 mb-6">Unlock your creativity with cutting-edge tools designed for professionals. From graphic design to video editing, 
+                        streamline your workflow and bring your boldest ideas to life with the most advanced software solutions at your fingertips.</p>
+                    <img src="image1.webp" class="mb-6" style="border-radius: 10px;">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                    <h2 class="text-2xl font-bold mb-3">Collaborate</h2>
+                    <p class="text-gray-700 mb-12">Effortlessly connect with your team, no matter where you are. Share ideas, work on projects, 
+                        and collaborate in real-time using powerful cloud-based tools designed for seamless communication and teamwork.</p>
+                    <img src="image2.webp" class="mb-6" style="border-radius: 10px;">
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                    <h2 class="text-2xl font-bold mb-3">Learn & Grow</h2>
+                    <p class="text-gray-700 mb-6">Unlock your potential with comprehensive tutorials, expert tips, and hands-on training. 
+                        Whether you're mastering new tools or enhancing existing skills, 
+                        access a wealth of resources designed to help you stay ahead in your field and continuously grow in your career.</p>
+                    <img src="image3.webp" class="mb-6" style="border-radius: 10px;">
+                </div>
+            </div>
+            <div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 margin-bottom:10px">
+                    <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                        <h2 class="text-2xl font-bold mb-3">New AI Assistant</h2>
+                        <p class="text-gray-700 mb-6">Adobe's AI assistant, powered by Adobe Sensei, enhances user creativity by providing intelligent suggestions, automating repetitive tasks, and offering real-time feedback. It seamlessly integrates with Adobe Creative Cloud, enabling
+                            users to streamline their workflows, generate innovative ideas, and improve their design processes, ultimately enhancing productivity and creativity.</p>
+                            <img src="image4.webp" class="mb-6" style="border-radius: 10px;">
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                        <h2 class="text-2xl font-bold mb-3">GenStudio</h2>
+                        <p class="text-gray-700 mb-6">
+                            Adobe Genstudio is an innovative platform designed to simplify the creative process. It leverages advanced AI tools to enhance collaboration and streamline workflows, allowing users to generate, edit, and share content effortlessly. With its user-friendly
+                            interface, Genstudio empowers creators to produce high-quality visuals and videos, fostering creativity and productivity.</p>
+                            <img src="image5.webp" class="mb-6" style="border-radius: 10px;">
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md" style="background: linear-gradient(to bottom right, white, thistle);">
+                        <h2 class="text-2xl font-bold mb-3">Creative cloud</h2>
+                        <p class="text-gray-700 mb-6">Adobe Creative Cloud is a comprehensive suite of applications and services for creative professionals. It offers a wide range of tools for graphic design, video editing, web development, and photography, enabling seamless collaboration
+                            and file sharing. With cloud-based storage and continuous updates, Creative Cloud empowers users to unleash their creativity anytime, anywhere.</p>
+                            <img src="image6.webp" class="mb-6" style="border-radius: 10px;">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-400">
+            <!-- Main Footer Content -->
+            <div class="container mx-auto px-4 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-8">
+                    <!-- Footer Column 1 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Products</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">Photoshop</a></li>
+                            <li><a href="#" class="hover:text-white">Illustrator</a></li>
+                            <li><a href="#" class="hover:text-white">Premiere Pro</a></li>
+                            <li><a href="#" class="hover:text-white">After Effects</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 2 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Support</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">Help Center</a></li>
+                            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                            <li><a href="#" class="hover:text-white">Community Forums</a></li>
+                            <li><a href="#" class="hover:text-white">Learning Center</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 3 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Company</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">About Adobe</a></li>
+                            <li><a href="#" class="hover:text-white">Careers</a></li>
+                            <li><a href="#" class="hover:text-white">Press</a></li>
+                            <li><a href="#" class="hover:text-white">Investors</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 4 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Resources</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">Creative Cloud</a></li>
+                            <li><a href="#" class="hover:text-white">Document Cloud</a></li>
+                            <li><a href="#" class="hover:text-white">Experience Cloud</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 5 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Learn</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">Tutorials</a></li>
+                            <li><a href="#" class="hover:text-white">User Guides</a></li>
+                            <li><a href="#" class="hover:text-white">Training</a></li>
+                        </ul>
+                    </div>
+                    <!-- Footer Column 6 -->
+                    <div>
+                        <h6 class="text-white mb-4 font-bold uppercase">Legal</h6>
+                        <ul>
+                            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-white">Terms of Use</a></li>
+                            <li><a href="#" class="hover:text-white">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="bg-gray-800 py-4">
+                <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-sm">© 2024 Adobe. All rights reserved.</p>
+                    <ul class="flex space-x-4">
+                        <li><a href="#" class="hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-white">Cookie Preferences</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>
