@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Directory</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        /* Card Container */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px; /* Increased spacing between cards */
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Card Styling */
+        .card {
+            width: 250px;
+            padding: 25px; /* Increased padding inside each card */
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+            position: relative;
+            text-align: center;
+        }
+
+        .card img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #ddd;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card .likes, .card .language, .card .email, .card .address {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px; /* Adds spacing between text elements */
+        }
+
+        .card .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgb(248, 248, 248);
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        /* Footer Styling */
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #4dd0e1;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>User Directory</h1>
+        <p>Browse through the directory and find information on our users.</p>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchCards()">
+            <select id="languageFilter" onchange="filterByLanguage()">
+                <option value="">All Languages</option>
+                <option value="English">English</option>
+                <option value="Kannada">Kannada</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Tamil">Tamil</option>
+                <option value="Malayalam">Malayalam</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div id="cardContainer" class="card-container"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 User Directory. Made with ❤️ for web development. 
+            <a href="https://jsonplaceholder.typicode.com/" target="_blank">Powered by JSONPlaceholder</a>
+        </p>
+    </footer>
+
+    <script>
+        const cardContainer = document.getElementById('cardContainer');
+        const searchInput = document.getElementById('searchInput');
+        const languageFilter = document.getElementById('languageFilter');
+        const languages = ["English", "Kannada", "Hindi", "Telugu", "Tamil", "Malayalam"];
+
+        document.addEventListener("DOMContentLoaded", fetchAndDisplayData);
+
+        function fetchAndDisplayData() {
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(item => {
+                        createCard(item);
+                    });
+                });
+        }
+
+        function createCard(data) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.setAttribute('data-language', languages[Math.floor(Math.random() * languages.length)]);
+            
+            // Generate a profile picture using UI Avatars API
+            const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name)}&background=random&color=fff`;
+
+            card.innerHTML = `
+                <img src="${avatarUrl}" alt="${data.name}'s avatar">
+                <h2>${data.name}</h2>
+                <p class="username">Username: ${data.username}</p>
+                <p class="email">Email: ${data.email}</p>
+                <p class="address">Address: ${data.address.street}, ${data.address.city}</p>
+                <p class="likes">Likes: ${Math.floor(Math.random() * 1000) + 1}</p>
+                <p class="language">Language: ${card.getAttribute('data-language')}</p>
+                <button class="delete-btn" onclick="deleteCard(this)">Delete</button>
+            `;
+            cardContainer.appendChild(card);
+        }
+
+        function deleteCard(button) {
+            const card = button.parentElement;
+            card.remove();
+        }
+
+        function searchCards() {
+            const query = searchInput.value.toLowerCase();
+            const cards = cardContainer.querySelectorAll('.card');
+            cards.forEach(card => {
+                const name = card.querySelector('h2').innerText.toLowerCase();
+                card.style.display = name.includes(query) ? '' : 'none';
+            });
+        }
+
+        function filterByLanguage() {
+            const selectedLanguage = languageFilter.value;
+            const cards = cardContainer.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardLanguage = card.getAttribute('data-language');
+                card.style.display = !selectedLanguage || cardLanguage === selectedLanguage ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
